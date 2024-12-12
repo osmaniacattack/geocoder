@@ -56,6 +56,8 @@ const geocodeAddress = async (address) => {
   }
 };
 
+
+// Defines the cli command required
 yargs
   .command(
     'geocode <address>',
