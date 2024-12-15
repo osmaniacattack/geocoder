@@ -1,7 +1,8 @@
+require('dotenv').config();
 const axios = require('axios');
 const yargs = require('yargs');
 
-const API_KEY = 'AIzaSyA38PSV8kdR_hantdt1_5yxHHZiYd8p9rA';
+const API_KEY = process.env.API_KEY;
 const GOOGLE_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json";
 const NWS_ENDPOINT = "https://api.weather.gov/zones";
 
