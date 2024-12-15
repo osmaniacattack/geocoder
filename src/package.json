@@ -1,12 +1,10 @@
 {
   "name": "geocode-cli",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "geocode": "node geocode.js geocode"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Abdul Osman",
   "license": "ISC",
   "description": "",
   "dependencies": {

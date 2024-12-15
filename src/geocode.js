@@ -6,7 +6,6 @@ const API_KEY = process.env.API_KEY;
 const GOOGLE_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json";
 const NWS_ENDPOINT = "https://api.weather.gov/zones";
 
-// Function to fetch geocode for an address
 const geocodeAddress = async (address) => {
   try {
     const params = {
@@ -41,10 +40,9 @@ const geocodeAddress = async (address) => {
     console.log('/////////////////////////////////////////')
 
   } catch (err) {
-    console.log("Error fetching coordinates: ", err);
+    console.log("Error fetching coordinates. Please be sure that a full address was entered. ", err);
   }
 };
-
 
 // Defines the cli command required
 yargs
