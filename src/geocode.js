@@ -3,53 +3,41 @@ const yargs = require('yargs');
 
 const API_KEY = 'AIzaSyA38PSV8kdR_hantdt1_5yxHHZiYd8p9rA';
 const GOOGLE_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json";
-
-const COUNTIES = {
-    'VA': {
-        'Greene County': 'VAC079',
-        'Greensville County': 'VAC081',
-        'Halifax County': 'VAC083',
-        'Hanover County': 'VAC085',
-        'Henrico County': 'VAC087'
-    }
-}
+const NWS_ENDPOINT = "https://api.weather.gov/zones";
 
 // Function to fetch geocode for an address
 const geocodeAddress = async (address) => {
   try {
-    let params = {
+    const params = {
       address: address,
       key: API_KEY,
     };
     const { data } = await axios.get(`${GOOGLE_ENDPOINT}`, { params });
-    const addr = data.results[0].address_components;
     const lat = data.results[0].geometry.location.lat;
     const lng = data.results[0].geometry.location.lng;
-    let county = '';
-    let state = '';
-    let noaaOutput = '';
+    let nwsCode = '';
+    let nwsData;
 
-    for (let i = 0; i < addr.length; i++){
-        if (addr[i].long_name.includes('County')){
-            county = addr[i].long_name; // e.g. Hanover County
+    if (lat !== '' && lng !== ''){
+      try {
+        const NWSParams = {
+          point: `${lat},${lng}`
         }
-        if (addr[i].types[0] === 'administrative_area_level_1'){
-            state = addr[i].short_name; // e.g. VA
-        }
+        nwsData  = await axios.get(NWS_ENDPOINT, {
+          params: NWSParams
+        });
+        nwsCode = nwsData.data.features[0].properties.id;
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    if (county !== '' && state !== ''){
-        try {
-            noaaOutput = COUNTIES[state][county];
-        } catch (error) {
-            console.log('This county was not found in the database.')
-        }
-    }
-
-    console.log(`Requested address: ${address}`);
+    console.log(`Searching: ${address} ...\n`);
+    console.log('/////////////////////////////////////////')
     console.log(`Latitude: ${lat}`);
     console.log(`Longitude: ${lng}`);
-    console.log(`${county} with an NOAA code of >> ${noaaOutput} <<`);
+    console.log(`NWS Code: ${nwsCode}`);
+    console.log('/////////////////////////////////////////')
 
   } catch (err) {
     console.log("Error fetching coordinates: ", err);
