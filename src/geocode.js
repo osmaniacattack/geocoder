@@ -37,7 +37,7 @@ const geocodeAddress = async (address) => {
     console.log(`Latitude: ${lat}`);
     console.log(`Longitude: ${lng}`);
     console.log(`NWS Code: ${nwsCode}`);
-    console.log('/////////////////////////////////////////')
+    console.log('/////////////////////////////////////////\n')
 
   } catch (err) {
     console.log("Error fetching coordinates. Please be sure that a full address was entered. ", err);
