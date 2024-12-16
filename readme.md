@@ -8,19 +8,19 @@
 3. Rename the .env.example file to be .env and add in your api key like so: `API_KEY=your_key_here`
 
 ## 3. Usage
-`npm run geocode "<address>"`
+`geocode-cli geocode "<address>"`
 
 ### Example
-`npm run geocode "9555 Kings Charter Rd. # K, Ashland, VA 23005"`
+`geocode-cli geocode "1600 Amphitheatre Parkway, Mountain View, CA"`
 
 Produces the log below:
 
 ```
-Searching: 9555 Kings Charter Rd. # K, Ashland, VA 23005 ...
+Searching: 1600 Amphitheatre Parkway, Mountain View, CA ...
 
 /////////////////////////////////////////
-Latitude: 37.6920689
-Longitude: -77.43635669999999
-NWS Code: VAC085
+Latitude: 37.4225022
+Longitude: -122.0847398
+NWS Code: CAC085
 /////////////////////////////////////////
 ```
