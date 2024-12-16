@@ -4,6 +4,9 @@
   "scripts": {
     "geocode": "node geocode.js geocode"
   },
+  "bin": {
+    "geocode-cli": "./geocode.js"
+  },
   "author": "Abdul Osman",
   "license": "ISC",
   "description": "",
